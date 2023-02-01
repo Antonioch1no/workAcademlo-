@@ -16,11 +16,14 @@ Users.hasMany(userCourses, {as:"user_courses", foreignKey:"user_id"});
 userCourses.belongsTo(Courses,{as:"courses", foreignKey:"course_id"});
 Courses.hasMany(userCourses,{as:"user_course", foreignKey:"course_id"});
 
-Categories.belongsTo(Courses,{as:"cursos", foreignKey:"course_id"});
-Courses.hasMany(Categories,{as:"", foreignKey:"course_id"});
+Categories.belongsTo(Courses,{as:"curso", foreignKey:"course_id"});
+Courses.hasMany(Categories,{as:"cursos", foreignKey:"course_id"});
 
-Videos.belongsTo(Courses,{as:"videos", foreignKey:"course_id"});
-Courses.hasMany(Videos,{as:"", foreignKey:"course_id"});
+Videos.belongsTo(Courses,{as:"video", foreignKey:"course_id"});
+Courses.hasMany(Videos,{as:"videos", foreignKey:"course_id"});
+
+Videos.belongsTo(Categories, {as:"category", foreignKey:"categories_id"});
+Categories.hasMany(Videos,{as:"categorys", foreignKey:"categories_id"});
 
 };
 

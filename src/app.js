@@ -2,7 +2,10 @@ const express = require('express');
 const db = require('./utils/database')
 const initModels = require('./models/init.models');
 const Users = require('./models/users.models');
-const userRoutes = require('./routes/users.routes')
+const userRoutes = require('./routes/users.routes');
+const coursesRoutes = require('./routes/courses.routes');
+const videoRoutes = require('./routes/videos.routes');
+const categoriesRoutes = require('./routes/categories.routes');
 
 
 const app = express();
@@ -24,6 +27,9 @@ app.get('/', (req, res) => {
     res.status(200).json({message:'ddgdgdgd'})
 })
 app.use('/api/v1', userRoutes);
+app.use('/api/v1', coursesRoutes);
+app.use('/api/v1', videoRoutes);
+app.use('/api/v1', categoriesRoutes);
 
 
 

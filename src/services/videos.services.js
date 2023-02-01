@@ -1,46 +1,37 @@
-const Courses = require('../models/courses.models');
-const userCourses = require('../models/userCourses.model');
-const Users = require('../models/users.models');
 
- class UserServices {
+const Videos = require('../models/videos.models');
+
+ class VideosServices {
+    
     static async getAll() {
         try {
-            const result = await Users.findAll();
+            const result = await Videos.findAll();
             return result;
         } catch (error) {
             throw(error);
         }
     };
-
-    static async getById(id){
-        try {
-            const result = await Users.findByPk(id);
-            return result;
-        } catch (error) {
-            throw(error)
-        }
-    };
- static async create (user){
+    
+ static async create (video){
     try {
-        const result = await Users.create(user);
+        const result = await Videos.create(video);
         return result
     } catch (error) {
         throw(error);
     }
  };
 
- static async update (id, firstName, password){
+static async delete (id){
     try {
-        const result = await Users.update(id, firstName, password )
-        return result;
+        const result = await Videos.destroy(id)
     } catch (error) {
         throw(error);
     }
- };
+};
 
    static async getWithC (id){
     try {
-        const result = await Users.findOne({
+        const result = await Videos.findOne({
             where:{id},
             attributes:["firstName","lastName","email"],
             include:{ 
@@ -63,4 +54,4 @@ const Users = require('../models/users.models');
  
 
 
- module.exports = UserServices;
+ module.exports = VideosServices;

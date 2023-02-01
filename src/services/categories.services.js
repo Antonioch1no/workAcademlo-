@@ -1,46 +1,36 @@
-const Courses = require('../models/courses.models');
-const userCourses = require('../models/userCourses.model');
-const Users = require('../models/users.models');
+const Categories = require('../models/categories.models');
 
- class UserServices {
+ class CategoriesServices {
+    
     static async getAll() {
         try {
-            const result = await Users.findAll();
+            const result = await Categories.findAll();
             return result;
         } catch (error) {
             throw(error);
         }
     };
-
-    static async getById(id){
-        try {
-            const result = await Users.findByPk(id);
-            return result;
-        } catch (error) {
-            throw(error)
-        }
-    };
- static async create (user){
+    
+ static async create (category){
     try {
-        const result = await Users.create(user);
+        const result = await Categories.create(category);
         return result
     } catch (error) {
         throw(error);
     }
  };
 
- static async update (id, firstName, password){
+static async delete (id){
     try {
-        const result = await Users.update(id, firstName, password )
-        return result;
+        const result = await Categories.destroy(id)
     } catch (error) {
         throw(error);
     }
- };
+};
 
    static async getWithC (id){
     try {
-        const result = await Users.findOne({
+        const result = await Categories.findOne({
             where:{id},
             attributes:["firstName","lastName","email"],
             include:{ 
@@ -63,4 +53,4 @@ const Users = require('../models/users.models');
  
 
 
- module.exports = UserServices;
+ module.exports = CategoriesServices;

@@ -1,4 +1,5 @@
 const db = require('../utils/database');
+ const Courses = require("./courses.models")
 
 const {DataTypes} = require('sequelize');
 
@@ -18,7 +19,11 @@ const Categories = db.define("categories", {
     courseId:{
         type: DataTypes.INTEGER,
         allowNull:false,
-        field: "course_id"
+        field: "course_id",
+        references:{
+            model: Courses,
+            key:"id"
+        }
         
     },
   
